@@ -1,0 +1,109 @@
+<% include ./partials/header.ejs %>
+
+<%
+function checkBox(value){
+
+    if(emp.course.includes(value)){
+        return "checked"
+    }
+    return "";
+    
+}
+
+function gender(value){
+
+    if(emp.gender == value ){
+        return 'checked'
+    }
+    
+}
+%>
+
+<div class="container-fluid bg-warning mb-2 py-2">
+    Edit Employee
+</div>
+    <div class="container">
+
+
+        <form method="post" action="/edit-emp/<%= empId %>" enctype="multipart/form-data" >
+
+            <div class="mb-3">
+                <label for="exampleInputname" class="form-label">Name</label>
+                <input type="text" name="name" value="<%= emp.name %>" class="form-control" id="exampleInputname" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="email" value="<%= emp.email %>" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputdesignation" class="form-label">Designation</label>
+                <input type="text" name="designation" value="<%= emp.designation %>" class="form-control" id="exampleInputdesignation"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputmobile" class="form-label">Mobile</label>
+                <input type="text" name="mobile" value="<%= emp.mobile %>" class="form-control" id="exampleInputmobile"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <label for="check1" class="form-label">Course</label>
+            <div class="mb-3 d-flex gap-2" id="check1">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="bsc(cs)" id="flexCheckbsc" <%= checkBox("bsc(cs)") %> >
+                    <label class="form-check-label" for="flexCheckbsc"  >
+                        BSC(CS)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="bca" id="flexCheckbca" <%= checkBox("bca") %> >
+                    <label class="form-check-label" for="flexCheckbca">
+                        BCA
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="mca" id="flexCheckmca" <%= checkBox("mca") %> >
+                    <label class="form-check-label" for="flexCheckmca">
+                        MCA
+                    </label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputgender" class="form-label">gender</label>
+                <div class="d-flex ">
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault2" <%= gender("male") %> >
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault1" <%= gender("female") %> >
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Female
+                        </label>
+                    </div>
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="others" id="flexRadioDefault0" <%= gender("others") %> >
+                        <label class="form-check-label" for="flexRadioDefault0">
+                            others
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="img" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control" id="img"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <% include ./partials/footer.ejs %>

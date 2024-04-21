@@ -1,0 +1,43 @@
+<% include ./partials/header.ejs %>
+
+
+<div class="container-fluid bg-warning mb-2 py-2 d-flex align-items-center justify-content-start">
+
+
+  <div class="overflow-hidden rounded-circle border border-2 border-danger ms-1 me-3" style="width: 3%;">
+    <img src="https://tse2.mm.bing.net/th?id=OIP.hb-GCx_c61ptk7VlLEontQAAAA&pid=Api&P=0&h=180" alt="logo"
+      class="w-100 h-100 content-fit-cover">
+  </div>
+
+  Register Account
+</div>
+
+
+<div class="container mt-5 w-50">
+  
+  <form method="post" action="/register">
+    <div class="mb-3">
+      <label for="exampleInputusername" class="form-label">Username</label>
+      <input type="text" name="username" class="form-control" id="exampleInputusername" aria-describedby="emailHelp">
+
+      <div class="mb-3">
+        <label for="exampleInputname" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" id="exampleInputname" aria-describedby="emailHelp">
+    </div>
+    
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+            
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <div class="text-center mt-5">Already have an Account? <a href="/">Login</a></div>
+</div>
+  
+  <% include ./partials/footer.ejs %>

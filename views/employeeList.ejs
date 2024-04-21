@@ -1,0 +1,116 @@
+<% include ./partials/header.ejs %>
+
+<% function handleTime(seconds) {
+  let date = new Date(seconds);
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
+  const monthIndex = date.getMonth();
+  const month = monthNames[monthIndex];
+
+  const day = date.getDate()
+  const year = date.getFullYear()
+
+  
+  return `${day}-${month}-${year}`
+} %>
+
+<div class="container-fluid d-flex align-items-center justify-content-end py-2" >
+  <div class="mx-3">Total Count: <%= emp.length %></div>
+  <a href="/create-emp"><div class="badge text-bg-success mx-5 py-2 px-5">Create Employee </div></a>
+</div>
+
+<div class="container-fluid d-flex align-items-center justify-content-end py-2" >
+  <div class="mx-3">search</div>
+  <div class="mx-3">
+      <input type="text" name="search" placeholder="search..." class="px-2 py-1" id="search">
+</div>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">sr no </th>
+        <th scope="col">Image </th>
+        <th scope="col">unique id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">Mobile no</th>
+        <th scope="col">Designation</th>
+        <th scope="col">gender</th>
+        <th scope="col">Course</th>
+        <th scope="col">created date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% emp.map((item,index)=>{ %>
+        <tr>
+          <th scope="row"><%= index+1 %></th>
+          <td style="width: 5%;"> <div class="w-100 rounded overflow-hidden"><img src="./images/uploads/<%= item.image %>" alt="N.A" class="w-100 h-100 object-fit-cover"></div> </td>
+          <td> <%= item._id %> </td>
+          <td><%= item.name %></td>
+          <td><%= item.email %></td>
+          <td><%= item.mobile %></td>
+          <td><%= item.designation %></td>
+          <td><%= item.gender %></td>
+          <td><%= item.course.join() %></td>
+          <td><%= handleTime(item.createdAt) %></td>
+          <td>
+              <a href="/edit-emp/<%= item._id %>" class="btn btn-sm btn-primary">edit</a>
+              <a href="/delete-emp/<%= item._id %>" class="btn btn-sm btn-danger">delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+  <script>
+
+    let inp = document.querySelector('#search');
+    let tbody = document.querySelector('tbody');
+
+    inp.addEventListener("input",function(){
+      // tbody.innerHTML = ""
+      axios.get(`/search/${inp.value}`, {
+      })
+      .then(function (response) {
+        let innerhtml = "";
+        let ind = 1
+        console.log(response.data[0]);
+        let searchedItems = response.data[0];
+        let dp=""
+        if (searchedItems?.image) {
+           dp = `./images/uploads/${searchedItems.image}`;
+        }else{
+           dp = 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D'
+        }
+        innerhtml += `
+        <tr>
+          <th scope="row">${ind}</th>
+          <td style="width: 5%;"> <div class="w-100 rounded overflow-hidden"><img src="${dp}" alt="N.A" class="w-100 h-100 object-fit-cover"></div> </td>
+          <td> ${searchedItems._id} </td>
+          <td>${searchedItems.name}</td>
+          <td>${searchedItems.email}</td>
+          <td>${searchedItems.mobile}</td>
+          <td>${searchedItems.designation}</td>
+          <td>${searchedItems.gender}</td>
+          <td>${searchedItems.course.join()}</td>
+          <td>${handleTime(searchedItems.createdAt)}</td>
+          <td>
+              <a href="/edit-emp/${searchedItems._id}" class="btn btn-sm btn-primary">edit</a>
+              <a href="/delete-emp/${searchedItems._id}" class="btn btn-sm btn-danger">delete</a>
+          </td>
+        </tr>`
+        tbody.innerHTML = innerhtml;
+        ind++;
+      })
+
+    })
+  </script>
+  <script src="./javascripts/script.js"></script>
+
+<% include ./partials/footer.ejs %>

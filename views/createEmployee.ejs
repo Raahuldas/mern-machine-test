@@ -1,0 +1,92 @@
+<% include ./partials/header.ejs %>
+<div class="container-fluid bg-warning mb-2 py-2">
+    Create Employee
+</div>
+    <div class="container">
+
+
+        <form method="post" action="/create-emp" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="exampleInputname" class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" id="exampleInputname" aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputdesignation" class="form-label">Designation</label>
+                <input type="text" name="designation" class="form-control" id="exampleInputdesignation"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputmobile" class="form-label">Mobile</label>
+                <input type="text" name="mobile" class="form-control" id="exampleInputmobile"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <label for="check1" class="form-label">Course</label>
+            <div class="mb-3 d-flex gap-2" id="check1">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="bsc(cs)" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        BSC(CS)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="bca" id="flexCheckbca">
+                    <label class="form-check-label" for="flexCheckbca">
+                        BCA
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="course" value="mca" id="flexCheckmca">
+                    <label class="form-check-label" for="flexCheckmca">
+                        MCA
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="exampleInputgender" class="form-label">gender</label>
+                <div class="d-flex ">
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault2"
+                        checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Female
+                        </label>
+                    </div>
+                    <div class="form-check me-lg-4">
+                        <input class="form-check-input" type="radio" name="gender" value="others" id="flexRadioDefault0">
+                        <label class="form-check-label" for="flexRadioDefault0">
+                            others
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="mb-3">
+                <label for="img" class="form-label">Image</label>
+                <input type="file" name="image" class="form-control" id="img"
+                    aria-describedby="emailHelp">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <% include ./partials/footer.ejs %>
